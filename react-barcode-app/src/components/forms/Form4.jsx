@@ -2,6 +2,40 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Barcode from 'react-barcode';
+import jsPDF from 'jspdf';
+import styled from 'styled-components';
+
+const FormContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+`;
+
+const BarcodeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+`;
+
+const Button = styled.button`
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: ${props => props.primary ? '#008CBA' : '#4CAF50'};
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${props => props.primary ? '#007bb5' : '#45a049'};
+  }
+`;
 
 const Form4 = ({ formData, setFormData }) => {
   const [data, setData] = useState(formData.form4 || {});
@@ -25,7 +59,7 @@ const Form4 = ({ formData, setFormData }) => {
 
       console.log('Form data saved:', response.data);
       alert('Form data saved successfully');
-      setFormData({})
+      setFormData({});
       navigate('/'); // Redirect to the next route if needed
     } catch (error) {
       console.error('Error saving form data:', error);
@@ -33,19 +67,19 @@ const Form4 = ({ formData, setFormData }) => {
     }
   };
 
-  const handleDownload = () => {
+  const handleDownloadPNG = () => {
     const svg = document.querySelector('svg');
     const svgData = new XMLSerializer().serializeToString(svg);
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     const img = new Image();
 
-    img.onload = function() {
+    img.onload = function () {
       canvas.width = img.width;
       canvas.height = img.height;
       ctx.drawImage(img, 0, 0);
       const pngFile = canvas.toDataURL('image/png');
-      
+
       const downloadLink = document.createElement('a');
       downloadLink.href = pngFile;
       downloadLink.download = 'barcode.png';
@@ -55,29 +89,42 @@ const Form4 = ({ formData, setFormData }) => {
     img.src = 'data:image/svg+xml;base64,' + btoa(svgData);
   };
 
+  const handleDownloadPDF = () => {
+    const svg = document.querySelector('svg');
+    const svgData = new XMLSerializer().serializeToString(svg);
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    const img = new Image();
+
+    img.onload = function () {
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx.drawImage(img, 0, 0);
+      const pngFile = canvas.toDataURL('image/png');
+
+      const pdf = new jsPDF();
+      pdf.addImage(pngFile, 'PNG', 15, 40, 180, 160);
+      pdf.save('barcode.pdf');
+    };
+
+    img.src = 'data:image/svg+xml;base64,' + btoa(svgData);
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Barcode</label>
-        <input
-          type="text"
-          name="field1"
-          value={data.field1 || ''}
-          onChange={handleChange}
-        />
-      </div>
-
-      {data.field1 && (
-        <div>
-          <Barcode value={data.field1} />
-          <button type="button" onClick={handleDownload}>
-            Download Barcode
-          </button>
-        </div>
-      )}
-
-      <button type="submit">Save</button>
-    </form>
+    <FormContainer onSubmit={handleSubmit}>
+      <BarcodeContainer>
+        <Barcode value={formData} displayValue={false} />
+        <Button type="button" onClick={handleDownloadPNG}>
+          Download PNG
+        </Button>
+        <Button type="button" onClick={handleDownloadPDF}>
+          Download PDF
+        </Button>
+      </BarcodeContainer>
+      <Button type="submit" primary>
+        Save
+      </Button>
+    </FormContainer>
   );
 };
 
