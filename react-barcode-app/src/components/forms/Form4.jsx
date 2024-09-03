@@ -47,14 +47,14 @@ const Form4 = ({ formData, setFormData }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormData((prev) => ({ ...prev, form4: data }));
+    setFormData((prev) => ({ ...prev, Barcode: data }));
 
     try {
       const response = await axios.post('http://localhost:5000/api/forms', {
-        form1: formData.form1,
-        form2: formData.form2,
-        form3: formData.form3,
-        form4: data,
+        Sender: formData.Sender,
+        Receiver: formData.Receiver,
+        Shipment: formData.Shipment,
+        Barcode: data,
       });
 
       console.log('Form data saved:', response.data);

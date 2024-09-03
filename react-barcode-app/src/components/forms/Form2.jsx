@@ -13,9 +13,9 @@ const Form2 = ({ formData, setFormData }) => {
 
   const validate = () => {
     const newErrors = {};
-    if (!data.field1) newErrors.field1 = 'Shipment area is required';
-    if (!data.field2) newErrors.field2 = 'Area is required';
-    if (!data.field3) newErrors.field3 = 'City is required';
+    if (!data.Shipmentarea) newErrors.Shipmentarea = 'Shipment area is required';
+    if (!data.Area) newErrors.Area = 'Area is required';
+    if (!data.City) newErrors.City = 'City is required';
     if (!data.field4) newErrors.field4 = 'State is required';
 
     return newErrors;
@@ -27,7 +27,7 @@ const Form2 = ({ formData, setFormData }) => {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
-      setFormData((prev) => ({ ...prev, form2: data }));
+      setFormData((prev) => ({ ...prev, Receiver: data }));
       navigate('/form3');
     }
   };
@@ -53,34 +53,34 @@ const Form2 = ({ formData, setFormData }) => {
         <label>Shipment area</label>
         <input
           type="text"
-          name="field1"
-          value={data.field1 || ''}
+          name="Shipmentarea"
+          value={data.Shipmentarea || ''}
           onChange={handleChange}
           style={inputStyle}
         />
-        {errors.field1 && <div style={errorStyle}>{errors.field1}</div>}
+        {errors.Shipmentarea && <div style={errorStyle}>{errors.Shipmentarea}</div>}
       </div>
       <div>
         <label>Area</label>
         <input
           type="text"
-          name="field2"
-          value={data.field2 || ''}
+          name="Area"
+          value={data.Area || ''}
           onChange={handleChange}
           style={inputStyle}
         />
-        {errors.field2 && <div style={errorStyle}>{errors.field2}</div>}
+        {errors.Area && <div style={errorStyle}>{errors.Area}</div>}
       </div>
       <div>
         <label>City</label>
         <input
           type="text"
-          name="field3"
-          value={data.field3 || ''}
+          name="City"
+          value={data.City || ''}
           onChange={handleChange}
           style={inputStyle}
         />
-        {errors.field3 && <div style={errorStyle}>{errors.field3}</div>}
+        {errors.City && <div style={errorStyle}>{errors.City}</div>}
       </div>
       <div>
         <label>State</label>

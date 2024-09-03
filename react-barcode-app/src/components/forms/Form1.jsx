@@ -15,11 +15,11 @@ const Form1 = ({ formData, setFormData }) => {
 
   const validate = () => {
     const newErrors = {};
-    if (!data.field1) newErrors.field1 = 'Shipment area is required';
-    if (!data.field2) newErrors.field2 = 'Area is required';
-    if (!data.field3) newErrors.field3 = 'City is required';
-    if (!data.field4) newErrors.field4 = 'State is required';
-    if (!data.field5) newErrors.field5 = 'Pincode is required';
+    if (!data.ShipmentArea) newErrors.ShipmentArea = 'Shipment area is required';
+    if (!data.Area) newErrors.Area = 'Area is required';
+    if (!data.City) newErrors.City = 'City is required';
+    if (!data.State) newErrors.State = 'State is required';
+    if (!data.Pincode) newErrors.Pincode = 'Pincode is required';
 
     return newErrors;
   };
@@ -30,7 +30,7 @@ const Form1 = ({ formData, setFormData }) => {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
-      setFormData((prev) => ({ ...prev, form1: data }));
+      setFormData((prev) => ({ ...prev, Sender: data }));
       navigate('/form2');
     }
   };
@@ -56,56 +56,56 @@ const Form1 = ({ formData, setFormData }) => {
         <label>Shipment Area</label>
         <input
           type="text"
-          name="field1"
-          value={data.field1 || ''}
+          name="ShipmentArea"
+          value={data.ShipmentArea || ''}
           onChange={handleChange}
           style={inputStyle}
         />
-        {errors.field1 && <div style={errorStyle}>{errors.field1}</div>}
+        {errors.ShipmentArea && <div style={errorStyle}>{errors.ShipmentArea}</div>}
       </div>
       <div>
         <label>Area</label>
         <input
           type="text"
-          name="field2"
-          value={data.field2 || ''}
+          name="Area"
+          value={data.Area || ''}
           onChange={handleChange}
           style={inputStyle}
         />
-        {errors.field2 && <div style={errorStyle}>{errors.field2}</div>}
+        {errors.Area && <div style={errorStyle}>{errors.Area}</div>}
       </div>
       <div>
         <label>City</label>
         <input
           type="text"
-          name="field3"
-          value={data.field3 || ''}
+          name="City"
+          value={data.City || ''}
           onChange={handleChange}
           style={inputStyle}
         />
-        {errors.field3 && <div style={errorStyle}>{errors.field3}</div>}
+        {errors.City && <div style={errorStyle}>{errors.City}</div>}
       </div>
       <div>
         <label>State</label>
         <input
           type="text"
-          name="field4"
-          value={data.field4 || ''}
+          name="State"
+          value={data.State || ''}
           onChange={handleChange}
           style={inputStyle}
         />
-        {errors.field4 && <div style={errorStyle}>{errors.field4}</div>}
+        {errors.State && <div style={errorStyle}>{errors.State}</div>}
       </div>
       <div>
         <label>Pincode</label>
         <input
           type="text"
-          name="field5"
-          value={data.field5 || ''}
+          name="Pincode"
+          value={data.Pincode || ''}
           onChange={handleChange}
           style={inputStyle}
         />
-        {errors.field5 && <div style={errorStyle}>{errors.field5}</div>}
+        {errors.Pincode && <div style={errorStyle}>{errors.Pincode}</div>}
       </div>
       <button type="submit" style={{ padding: '0.5rem 1rem', fontSize: '1rem' }}>
         Next <FontAwesomeIcon icon={faArrowRight} />

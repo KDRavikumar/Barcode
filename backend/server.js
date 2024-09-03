@@ -14,10 +14,10 @@ mongoose.connect('mongodb://localhost:27017/forms', { useNewUrlParser: true, use
 
 // Define schemas and models
 const formSchema = new mongoose.Schema({
-  form1: Object,
-  form2: Object,
-  form3: Object,
-  form4: Object,
+  Sender: Object,
+  Receiver: Object,
+  Shipment: Object,
+  Barcode: Object,
 });
 
 const FormData = mongoose.model('FormData', formSchema);

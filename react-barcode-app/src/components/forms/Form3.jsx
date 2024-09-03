@@ -13,9 +13,9 @@ const Form3 = ({ formData, setFormData }) => {
 
   const validate = () => {
     const newErrors = {};
-    if (!data.field1) newErrors.field1 = 'Order number is required';
-    if (!data.field2) newErrors.field2 = 'Order details are required';
-    if (!data.field3) newErrors.field3 = 'Prize is required';
+    if (!data.Ordernumber) newErrors.Ordernumber = 'Order number is required';
+    if (!data.Orderdetails) newErrors.Orderdetails = 'Order details are required';
+    if (!data.Prize) newErrors.Prize = 'Prize is required';
 
     return newErrors;
   };
@@ -26,7 +26,7 @@ const Form3 = ({ formData, setFormData }) => {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
-      setFormData((prev) => ({ ...prev, form3: data }));
+      setFormData((prev) => ({ ...prev, Shipment: data }));
       navigate('/form4');
     }
   };
@@ -52,34 +52,34 @@ const Form3 = ({ formData, setFormData }) => {
         <label>Order Number</label>
         <input
           type="text"
-          name="field1"
-          value={data.field1 || ''}
+          name="Ordernumber"
+          value={data.Ordernumber || ''}
           onChange={handleChange}
           style={inputStyle}
         />
-        {errors.field1 && <div style={errorStyle}>{errors.field1}</div>}
+        {errors.Ordernumber && <div style={errorStyle}>{errors.Ordernumber}</div>}
       </div>
       <div>
         <label>Order Details</label>
         <input
           type="text"
-          name="field2"
-          value={data.field2 || ''}
+          name="Orderdetails"
+          value={data.Orderdetails || ''}
           onChange={handleChange}
           style={inputStyle}
         />
-        {errors.field2 && <div style={errorStyle}>{errors.field2}</div>}
+        {errors.Orderdetails && <div style={errorStyle}>{errors.Orderdetails}</div>}
       </div>
       <div>
         <label>Prize</label>
         <input
           type="text"
-          name="field3"
-          value={data.field3 || ''}
+          name="Prize"
+          value={data.Prize || ''}
           onChange={handleChange}
           style={inputStyle}
         />
-        {errors.field3 && <div style={errorStyle}>{errors.field3}</div>}
+        {errors.Prize && <div style={errorStyle}>{errors.Prize}</div>}
       </div>
       <button type="submit" style={{ padding: '0.5rem 1rem', fontSize: '1rem' }}>
         Next
