@@ -38,7 +38,7 @@ const Button = styled.button`
 `;
 
 const Form4 = ({ formData, setFormData }) => {
-  const [data, setData] = useState(formData.form4 || {});
+  const [data, setData] = useState(formData.Barcode || {});
   const navigate = useNavigate();
 
   const handleChange = (e) => {

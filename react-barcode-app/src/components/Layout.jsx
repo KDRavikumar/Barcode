@@ -68,9 +68,9 @@ const Layout = ({ children, formData }) => {
       </Header>
       <LeftSection>
         <NavList>
-          <NavItem><a href="/home">Home</a></NavItem>
-          <NavItem><a href="/about">About</a></NavItem>
-          <NavItem><a href="/contact">Contact</a></NavItem>
+          <NavItem><a href="/">Home</a></NavItem>
+          <NavItem><a href="/">About</a></NavItem>
+          <NavItem><a href="/">Contact</a></NavItem>
           {/* Add more NavItems as needed */}
         </NavList>
       </LeftSection>

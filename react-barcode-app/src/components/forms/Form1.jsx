@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const Form1 = ({ formData, setFormData }) => {
-  const [data, setData] = useState(formData.form1 || {});
+  const [data, setData] = useState(formData.Sender || {});
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 

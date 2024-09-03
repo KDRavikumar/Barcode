@@ -6,13 +6,14 @@ import Form2 from './components/forms/Form2';
 import Form3 from './components/forms/Form3';
 import Form4 from './components/forms/Form4';
 import './App.css';
+import Barcode from 'react-barcode';
 
 function App() {
   const [formData, setFormData] = useState({
-    form1: {},
-    form2: {},
-    form3: {},
-    form4: {},
+    Sender: {},
+    Receiver: {},
+    shipment: {},
+    Barcode: {},
   });
 
   return (

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Form2 = ({ formData, setFormData }) => {
-  const [data, setData] = useState(formData.form2 || {});
+  const [data, setData] = useState(formData.Receiver || {});
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
