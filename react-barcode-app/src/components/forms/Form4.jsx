@@ -14,6 +14,17 @@ const FormContainer = styled.form`
   border: 1px solid #ccc;
   border-radius: 10px;
   background-color: #f9f9f9;
+  max-width: 600px;
+  margin: 20px auto;
+
+  @media (max-width: 768px) {
+    padding: 15px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 10px;
+    margin: 10px;
+  }
 `;
 
 const BarcodeContainer = styled.div`
@@ -21,6 +32,14 @@ const BarcodeContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: 480px) {
+    margin-bottom: 10px;
+  }
 `;
 
 const Button = styled.button`
@@ -31,9 +50,20 @@ const Button = styled.button`
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 1rem;
 
   &:hover {
     background-color: ${props => props.primary ? '#007bb5' : '#45a049'};
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.85rem;
+    padding: 6px 12px;
   }
 `;
 
@@ -113,7 +143,12 @@ const Form4 = ({ formData, setFormData }) => {
   return (
     <FormContainer onSubmit={handleSubmit}>
       <BarcodeContainer>
-        <Barcode value={formData} displayValue={false} />
+        <Barcode 
+          value={formData.Barcode || ''} 
+          displayValue={false} 
+          width={1}  // Adjust width as needed
+          height={50} // Adjust height as needed
+        />
         <Button type="button" onClick={handleDownloadPNG}>
           Download PNG
         </Button>

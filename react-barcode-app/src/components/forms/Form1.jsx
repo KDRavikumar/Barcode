@@ -1,8 +1,120 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
+// Styled components for responsive design
+const FormContainer = styled.form`
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 1024px) {
+    padding: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.75rem;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.75rem;
+    color: #333; /* Color for labels */
+    font-size: 1.1rem;
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 0.9rem;
+    }
+  }
+`;
+
+const Input = styled.input`
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  color: #333; /* Color for input text */
+  background-color: #fff; /* Background color for input */
+
+  @media (max-width: 1024px) {
+    padding: 0.9rem;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+`;
+
+const ErrorText = styled.div`
+  color: red;
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.75rem;
+  }
+`;
+
+const Button = styled.button`
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  background-color: #007bff;
+  color: #fff; /* Color for button text */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+
+  @media (max-width: 1024px) {
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+    padding: 0.55rem 1.1rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+  }
+`;
+
+// Main Form1 component
 const Form1 = ({ formData, setFormData }) => {
   const [data, setData] = useState(formData.Sender || {});
   const [errors, setErrors] = useState({});
@@ -35,82 +147,67 @@ const Form1 = ({ formData, setFormData }) => {
     }
   };
 
-  const inputStyle = {
-    width: '100%',
-    padding: '0.5rem',
-    fontSize: '1rem',
-    marginBottom: '1rem',
-    borderRadius: '4px',
-    border: '1px solid #ccc',
-  };
-
-  const errorStyle = {
-    color: 'red',
-    fontSize: '0.875rem',
-    marginBottom: '1rem',
-  };
-
   return (
-    <form onSubmit={handleSubmit}>
+    <FormContainer onSubmit={handleSubmit}>
       <div>
-        <label>Shipment Area</label>
-        <input
+        <label htmlFor="ShipmentArea">Shipment Area</label>
+        <Input
           type="text"
+          id="ShipmentArea"
           name="ShipmentArea"
           value={data.ShipmentArea || ''}
           onChange={handleChange}
-          style={inputStyle}
         />
-        {errors.ShipmentArea && <div style={errorStyle}>{errors.ShipmentArea}</div>}
+        {errors.ShipmentArea && <ErrorText>{errors.ShipmentArea}</ErrorText>}
       </div>
       <div>
-        <label>Area</label>
-        <input
+        <label htmlFor="Area">Area</label>
+        <Input
           type="text"
+          id="Area"
           name="Area"
           value={data.Area || ''}
           onChange={handleChange}
-          style={inputStyle}
         />
-        {errors.Area && <div style={errorStyle}>{errors.Area}</div>}
+        {errors.Area && <ErrorText>{errors.Area}</ErrorText>}
       </div>
       <div>
-        <label>City</label>
-        <input
+        <label htmlFor="City">City</label>
+        <Input
           type="text"
+          id="City"
           name="City"
           value={data.City || ''}
           onChange={handleChange}
-          style={inputStyle}
         />
-        {errors.City && <div style={errorStyle}>{errors.City}</div>}
+        {errors.City && <ErrorText>{errors.City}</ErrorText>}
       </div>
       <div>
-        <label>State</label>
-        <input
+        <label htmlFor="State">State</label>
+        <Input
           type="text"
+          id="State"
           name="State"
           value={data.State || ''}
           onChange={handleChange}
-          style={inputStyle}
         />
-        {errors.State && <div style={errorStyle}>{errors.State}</div>}
+        {errors.State && <ErrorText>{errors.State}</ErrorText>}
       </div>
       <div>
-        <label>Pincode</label>
-        <input
+        <label htmlFor="Pincode">Pincode</label>
+        <Input
           type="text"
+          id="Pincode"
           name="Pincode"
           value={data.Pincode || ''}
           onChange={handleChange}
-          style={inputStyle}
         />
-        {errors.Pincode && <div style={errorStyle}>{errors.Pincode}</div>}
+        {errors.Pincode && <ErrorText>{errors.Pincode}</ErrorText>}
       </div>
-      <button type="submit" style={{ padding: '0.5rem 1rem', fontSize: '1rem' }}>
+      <Button type="submit">
         Next <FontAwesomeIcon icon={faArrowRight} />
-      </button>
-    </form>
+      </Button>
+    </FormContainer>
   );
 };
 
